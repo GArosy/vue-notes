@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>数据与方法</title>
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <h1>数据绑定</h1>
+    <h2>Vue中有两种数据绑定模式</h2>
+    <ul>
+        <li><em>单向绑定 v-bind</em></li>
+        <p>数据只能从Model层（data）流向View层（页面元素）</p>
+        <li><em>双向绑定 v-model</em></li>
+        <p>数据可以在Model层（data）和View层（页面元素）双向流动</p>
+        <p>双向绑定一般应用于表单类元素上（input、select），很多元素不支持v-model</p>
+    </ul>
+    <div id="app">
+        <h2>单向绑定</h2>
+        <input type="text" v-bind:value="data1">
+        <p>{{data1}}</p>
+        <h2>双向绑定</h2>
+        <input type="text" v-model="data2">
+        <p>{{data2}}</p>
+    </div>
+
+    <script>
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                data1: 'data👉element',
+                data2: 'data👈👉element'
+            }
+        })
+
+        // $watch 方法：监视并记录变量变化
+        vm.$watch('data2', (newVal, oldVal) => {
+            console.log(newVal,oldVal);
+        })
+    </script>
+</body>
+
+</html>

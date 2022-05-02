@@ -23,6 +23,11 @@
 
     <!-- vue写法： 声明式编程 -->
     <div id="vue">
+        <!-- Vue借鉴了MVVM模型思想，分三层结构：
+                1. M：模型(Model) ：data中的数据
+				2. V：视图(View) ：模板代码
+				3. VM：视图模型(ViewModel)：Vue实例 
+                ViewModel是联系View和Model的纽带 -->
         <!-- data中的数据message（模型层Model）与模板代码（视图层View）绑定 -->
         <!-- 插值语法：
                 插值是数据绑定的最常见形式。
@@ -32,7 +37,8 @@
         <span v-bind:style="color">{{ message }}{{ 1+1 }}</span>
         <!-- 指令语法：
                 指令是带有 v- 前缀的特殊 attribute，例如 v-if。通常以单个表达式为值。
-                指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。 -->
+                指令的职责是，当表达式的值改变时，将其产生的连带影响，响应式地作用于 DOM。 
+                具体的指令语法见第四节-->
         <p v-if="seen">此元素的插入/移除由 seen:{{ seen }} 决定</p>
     </div>
 

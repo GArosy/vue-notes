@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <h1>插值语法</h1>
     <div id="app1">
         <p>文本插值：{{rawHTML}}</p>
         <p>HTML插值：<span v-html="rawHTML"></span></p>
@@ -21,7 +22,7 @@
             test
         </div>
     </div>
-
+    <h1>指令语法</h1>
     <div id="app2">
         <!-- v-if指令将根据表达式seen的值的真假来插入/移除 <p> 元素。-->
         <p v-if="seen">now you see me</p>
@@ -29,19 +30,16 @@
         <!-- Vue 为 v-bind 和 v-on 这两个最常用的指令，提供了特定简写 : 和 @  -->
         <a :href="url">url</a>
         <p @click="click1">click</p>
-
+    <h2>修饰符</h2>
         <!-- 以下代码触发了事件冒泡，输出 click2 click1 -->
         <div @click="click1">
-            <div @click="click2">
-                点击实现无修饰符的事件冒泡    
-            </div>
+            <!-- v-text会覆盖dom元素中的数据，相当于js的innerText方法 -->
+            <div @click="click2" v-text="msg1"></div>
         </div>
         
         <!-- 内层click加修饰符.stop后，阻断了后续事件冒泡，只输出click2 -->
         <div @click="click1">
-            <div @click.stop="click2">
-                点击实现有修饰符阻断事件冒泡    
-            </div>
+            <div @click.stop="click2" v-text="msg2"></div>
         </div>
 
     </div>
@@ -78,13 +76,15 @@
             data: {
                 seen: true,
                 url: 'https://cn.vuejs.org',
+                msg1: '点击实现无修饰符的事件冒泡',
+                msg2: '点击实现有修饰符阻断事件冒泡'
             },
             methods: {
                 click1: function () {
-                    console.log('click1');
+                    console.log('外层');
                 },
                 click2: function () {
-                    console.log('click2');
+                    console.log('内层');
                 }
             }
         })
