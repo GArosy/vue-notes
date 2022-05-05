@@ -1,12 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>数据代理</title>
+    <script src="vue.js"></script>
 </head>
+
 <body>
-    
+    <h1>Vue2中的数据代理</h1>
+    <p>
+        Vue2通过 Object.defineProperty() 方法将data中的数据加在vm对象上，
+        并为每一个添加至vm的属性指定getter和setter。
+        实现了通过vm对象代理data中的属性读写操作，
+        从而更加方便地操作data中的数据。
+    </p>
+    <p>
+        打开控制台查看obj2的属性
+    </p>
+    <div id="vm">
+        {{vueObj}}
+    </div>
+    <script>
+        const obj1 = {
+            x: 1
+        };
+        const obj2 = {
+            y: 2
+        };
+        Object.defineProperty(obj2, 'x', {
+            get() {
+                return obj1.x;
+            },
+            set(value) {
+                obj1.x = value;
+            }
+        })
+        console.log(obj2);
+        console.log('obj2中包含了obj1中的属性，obj2对obj1形成了数据代理');
+
+        const vm = new Vue({
+            el: '#vm',
+            data: {
+                vueObj: 1
+            }
+        })
+
+        console.log(vm);
+    </script>
 </body>
+
 </html>
