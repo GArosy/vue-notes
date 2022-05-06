@@ -8,8 +8,7 @@
 </head>
 
 <body>
-    <h1>数据绑定</h1>
-    <h2>Vue中有两种数据绑定模式</h2>
+    <h1>Vue中有两种数据绑定模式</h1>
     <ul>
         <li><em>单向绑定 v-bind</em></li>
         <p>数据只能从Model层（data）流向View层（页面元素）</p>
@@ -26,6 +25,16 @@
         <p>{{data2}}</p>
     </div>
 
+    <hr>
+
+    <h1>v-model = v-bind + v-on</h1>
+    <p>不使用v-model实现双向绑定：</p>
+    <div id="demo">
+        <!-- @input监听输入事件 -->
+        <input type="text" v-on:input="valueChange($event.target.value)" v-bind:value="msg">
+        <p>{{msg}}</p>
+    </div>
+
     <script>
         let vm = new Vue({
             el: '#app',
@@ -38,6 +47,18 @@
         // $watch 方法：监视并记录变量变化
         vm.$watch('data2', (newVal, oldVal) => {
             console.log(newVal,oldVal);
+        })
+
+        let demo = new Vue({
+            el: '#demo',
+            data: {
+                msg: 'v-bind + v-on'
+            },
+            methods: {
+                valueChange(value) {
+                    this.msg = value;
+                }
+            }
         })
     </script>
 </body>
