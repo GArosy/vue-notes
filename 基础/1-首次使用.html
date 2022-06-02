@@ -21,14 +21,16 @@
 
     <hr>
 
-    <!-- vue写法： 声明式编程 -->
+    <!-- vue基础写法：声明式编程 -->
     <div id="vue">
         <!-- Vue借鉴了MVVM模型思想，分三层结构：
-                1. M：模型(Model) ：data中的数据
-				2. V：视图(View) ：模板代码
-				3. VM：视图模型(ViewModel)：Vue实例 
-                ViewModel是联系View和Model的纽带 -->
-        <!-- data中的数据message（模型层Model）与模板代码（视图层View）绑定 -->
+                1. M  模型(Model)          ：  data中的数据
+				2. V  视图(View)           ：  模板代码
+				3. VM 视图模型(ViewModel)   ：  Vue实例
+                其中，ViewModel是联系View和Model的纽带 -->
+
+        <!-- data中的数据message（模型层Model）通过VM与模板代码（视图层View）绑定 -->
+        
         <!-- 插值语法：
                 插值是数据绑定的最常见形式。
                 插值在标签内表示为 Mustache 语法'{{}}'；在标签上表现为'v-bind:'。
