@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- title是组件注册时定义的 attribute 之一 -->
+        <blog-title title="Hello"></blog-title>
+        <!-- 要为property动态传值，需要使用v-bind -->
+        <blog-title v-for="item in titles" :key="item.id" :title="item.title" :content="item.content"></blog-title>
+    </div>
+
+</body>
+<script src="../vue.js"></script>
+<script>
+    // 组件注册时可以在prop内自定义它的标签的attribute，传值给prop时，该值就成为这个组件的property。
+    Vue.component('blog-title', {
+        props: ['title','content'],
+        template: `
+            <div>
+                <h2>{{title}}</h2>
+                <div v-html='content'></div>
+            </div>`
+    })
+
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            titles: [{
+                    id: 1,
+                    title: 'My journey with Vue',
+                    content: 'content'
+                },
+                {
+                    id: 2,
+                    title: 'Blogging with Vue',
+                    content: 'content'
+                },
+                {
+                    id: 3,
+                    title: 'Why Vue is so fun',
+                    content: 'content'
+                }
+            ]
+        }
+    })
+</script>
+
+</html>
