@@ -10,29 +10,34 @@
 
 <body>
     <div id="app">
-        <!-- title是组件注册时定义的 attribute 之一 -->
-        <blog-title title="Hello"></blog-title>
-        <!-- 要为property动态传值，需要使用v-bind -->
-        <blog-title v-for="item in titles" :key="item.id" :title="item.title" :content="item.content"></blog-title>
+        <!-- post 是组件注册时定义的 attribute -->
+        <blog-post :post="{title: 'hello',content:'content'}"> </blog-post>
+
+        <div :style="{fontSize:postFontSize + 'px', color: postColor}">
+            <!-- 父传子：父组件vm的数据posts传入子组件blog-post，
+                使用v-bind为property动态传值，并遍历posts渲染出子组件 -->
+            <blog-post v-for="item in posts" :key="item.id" :post="item"></blog-post>
+        </div>
+
     </div>
 
 </body>
 <script src="../vue.js"></script>
 <script>
     // 组件注册时可以在prop内自定义它的标签的attribute，传值给prop时，该值就成为这个组件的property。
-    Vue.component('blog-title', {
-        props: ['title','content'],
+    Vue.component('blog-post', {
+        props: ['post'],
         template: `
             <div>
-                <h2>{{title}}</h2>
-                <div v-html='content'></div>
+                <h2>{{ post.title }}</h2>
+                <div v-html='post.content'></div>
             </div>`
     })
 
     const vm = new Vue({
         el: '#app',
         data: {
-            titles: [{
+            posts: [{
                     id: 1,
                     title: 'My journey with Vue',
                     content: 'content'
@@ -47,7 +52,9 @@
                     title: 'Why Vue is so fun',
                     content: 'content'
                 }
-            ]
+            ],
+            postFontSize: 20,
+            postColor: "#F00"
         }
     })
 </script>

@@ -56,7 +56,13 @@
         //      原始HTML插值
         //          v-html指令会输出真正HTML
         //      动态绑定属性
-        //          v-bind: [属性]="值"
+        //          动态绑定属性分三种语法：直接绑定、对象语法、数组语法
+        //          1.直接绑定：
+        //              v-bind:[属性]="[data值]"。例如 <div v-bind:style="redColor">
+        //          2.对象语法：
+        //              v-bind:"{[属性1]:[data值1], [属性2]:[data值]2}"。例如 <div v-bind:style="{fontSize:mySize + 'px', color:myColor}">
+        //          3.数组语法：
+        //              v-bind:[属性]="[带方括号的变量]"。例如 <div v-bind:style="[baseStyle]">
         let vm = new Vue({
             el: '#app1',
             data: {
