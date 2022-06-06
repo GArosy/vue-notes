@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Vue 提供了一个特殊的元素 ＜component> 用来动态地挂载不同的组件。
+            使用 :is 属性来选择要挂载的组件 -->
+        <component :is="currentCpn"></component>
+        <button @click="changeCpn('1')">切换到组件1</button>
+        <button @click="changeCpn('2')">切换到组件2</button>
+        <button @click="changeCpn('3')">切换到组件3</button>
+    </div>
+
+</body>
+<script src="../vue.js"></script>
+<script>
+    Vue.component('cpn1', {
+        template: `<h3>组件1</h3>`
+    })
+    Vue.component('cpn2', {
+        template: `<h3>组件2</h3>`
+    })
+    Vue.component('cpn3', {
+        template: `<h3>组件3</h3>`
+    })
+
+    new Vue({
+        el: "#app",
+        data: {
+            currentCpn: 'cpn1'
+        },
+        methods: {
+            changeCpn (cpn) {
+                this.currentCpn = 'cpn' + cpn;
+            }
+        }
+    })
+</script>
+
+</html>

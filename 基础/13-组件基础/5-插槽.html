@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .alert {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid rgb(255, 40, 40);
+        background-color: rgb(255, 100, 100);
+    }
+</style>
+
+<body>
+    <div id="app">
+        <alert-box>Something bad happened.</alert-box>
+    </div>
+</body>
+
+<script src="../vue.js"></script>
+<script>
+    // Vue自带slot标签可支持向组件内传入自定义内容
+    Vue.component('alert-box', {
+        template: `
+            <div class="alert">
+                <strong>Error!</strong>
+                <slot></slot>
+            </div>
+        `
+    })
+
+    new Vue({
+        el: "#app"
+    })
+</script>
+
+</html>
