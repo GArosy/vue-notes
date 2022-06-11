@@ -1,8 +1,8 @@
-import App from './App';
+import App from './App.vue';
 // 创建VM
 new Vue({
     el: '#root',
-    template: `<app></app>`,
+    template: `<App></App>`,
     components: {
         App
     }
