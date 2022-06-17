@@ -10,6 +10,9 @@
 </head>
 
 <body>
+    <!-- v-for 可以遍历数组或对象 -->
+    <!-- 遍历数组时，v-for支持两个可选参数(item, index)，也可以用of代替in -->
+    <!-- 遍历对象时，v-for支持三个可选参数(value, key, index) -->
     <ul id="example1">
         <!-- 数组遍历渲染列表 -->
         <li v-for="(item, index) in items" :key="item.message">
