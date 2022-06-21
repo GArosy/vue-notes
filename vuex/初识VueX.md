@@ -100,3 +100,11 @@ Vuex 和单纯的全局对象有以下两点不同：
 - `actions`提交的是`mutations`而不是直接变更状态；
 - `actions`中可以包含异步操作, `mutations`中绝对不允许出现异步；
 - `actions`中的回调函数的第一个参数是`context`, 是一个与`store`实例具有相同属性和方法的对象；
+
+ ![img](https://upload-images.jianshu.io/upload_images/16550832-20d0ad3c60a99111.png?imageMogr2/auto-orient/strip|imageView2/2/w/701/format/webp) 
+
+首先，`Vue`组件如果调用某个 `VueX` 的方法过程中需要向后端请求时或者说出现异步操作时，需要`dispatch`  VueX中 `actions` 的方法，以保证数据的同步。可以说，`action` 的存在就是为了让`mutations` 中的方法能在异步操作中起作用。
+
+如果没有异步操作，那么我们就可以直接在组件内提交状态中的 `Mutations` 中自己编写的方法来达成对`state`成员的操作。注意，不建议在组件中直接对 `state` 中的成员进行操作，这是因为直接修改(例如：`this.$store.state.name = 'hello'` )的话不能被 `VueDevtools` 所监控到。
+
+最后被修改后的state成员会被渲染到组件的原位置当中去。
