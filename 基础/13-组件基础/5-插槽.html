@@ -8,28 +8,64 @@
     <title>Document</title>
 </head>
 <style>
-    .alert {
+    .super {
         margin: 10px;
         padding: 10px;
         border: 1px solid rgb(255, 40, 40);
         background-color: rgb(255, 100, 100);
     }
+    .sub {
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid rgb(40, 51, 255);
+        background-color: rgb(73, 144, 251);
+    }
 </style>
 
 <body>
+    <h3>插槽是实现父传子的另一种方式。它可以在父组件的模板中，直接对子组件的指定内容进行定制，增强子组件的拓展性和复用性。</h3>
     <div id="app">
-        <alert-box>Something bad happened.</alert-box>
+        <super-box></super-box>
     </div>
 </body>
 
 <script src="../../vue.js"></script>
 <script>
     // Vue自带slot标签可支持向组件内传入自定义内容
-    Vue.component('alert-box', {
+    Vue.component('SuperBox', {
         template: `
-            <div class="alert">
-                <strong>Error!</strong>
+            <div class="super">
+                <strong>这是父组件</strong>
+                <sub-box-1></sub-box-1>
+                <sub-box-1>这句话会覆盖子组件插槽的默认内容。如果子组件有多个插槽，这句话会被分发多次。</sub-box-1>
+                <sub-box-2>
+                    在父组件中使用template指定插槽
+                    <template v-slot:slot1>
+                        <p>这是具名插槽1，使用'v-slot:name'指定插槽</p>
+                    </template>
+                    <template #slot2>
+                        <p>这是具名插槽2，使用'#name'简写指定插槽</p>
+                    </template>
+                </sub-box-2>
+            </div>
+        `
+    })
+    Vue.component('SubBox1', {
+        template: `
+            <div class="sub">
+                <strong>这是带有默认插槽的子组件</strong>
+                <slot>这是子组件插槽的默认内容</slot>
+                <slot>这是子组件插槽的默认内容</slot>
+            </div>
+        `
+    })
+    Vue.component('SubBox2', {
+        template: `
+            <div class="sub">
+                <strong>这是带有具名插槽的子组件</strong>
                 <slot></slot>
+                <slot name="slot1">这是子组件插槽的默认内容</slot>
+                <slot name="slot2">这是子组件插槽的默认内容</slot>
             </div>
         `
     })
